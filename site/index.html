@@ -1,101 +1,94 @@
-<!DOCTYPE HTML>
 <html>
-  <head>
-    <link href="/stylesheets/screen.css" media="all" rel="stylesheet" type="text/css"/>
-    <script language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script><script language="javascript" src="javascripts/jquery.hotkeys.js" type="text/javascript"></script><script language="javascript" src="javascripts/key_status.js" type="text/javascript"></script><script language="javascript" src="javascripts/util.js" type="text/javascript"></script><script language="javascript" src="javascripts/sprite.js" type="text/javascript"></script><script language=
-"javascript" src="javascripts/sound.js" type="text/javascript"></script>
-  </head>
-  <body>
-    <canvas id="myCanvas" width="600" height="400"></canvas>
-   <div id="x"></div>
-    <script>
-      var canvas = document.getElementById('myCanvas');
-      var context = canvas.getContext('2d');
-      var timer;
-      var FPS = 30;
-var i=0;
-     var timer= setInterval(function() {
-     update();
-      draw();
-      }, 1000/FPS);
-    var textX = 100;
-var textY = 200;
-var textX2 = 0;
-function update() {
-  textX +=1;
-  textX2+=1;
-  i=i+1;
-  
-   if (keydown.space) {
-     Sound.play("shoot");
-    player.y-=10;
-    l();
-   
-  }
-  if(textX>550)
-{
-   textX=50;
-}
-if(textX2>550)
-{
-   textX2=0;
-}
-  player.x = player.x.clamp(0, 600-32);
- if((player.y==textY&&player.x==textX)||(player.y==textY&&player.x==textX2))
-{
-   document.getElementById("x").innerHTML="Game Over  Total Score= "+i;
-   Sound.play("explosion");
-   clearInterval(timer);
-}
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+<div id="up"><p><h1>WELCOME TO THE GAME WORLD</h1></p>
+<img src="gg.jpg" height="200px" width="250px">
+<p></p>
+<p></p>
+<p></p>
+<p><h1>Help Prince Charles of Yaman to reach his home and to meet his parents </h1></p>
+<p></p>
+<p></p>
+<p></p>
+</div>
+<div id="o"><p><h1>WANT TO KNOW THE STORY OF PAST THEN SEE THE SLIDESHOSW</h1></p></div>
+<div class="w3-content" id="s">
 
-} 
-function jump()
-{
-     player.y +=10;
-}
-function l(){
-    setTimeout(jump, 2000);
-}
+<img class="mySlides" id="r" src="1.jpg">
+<img class="mySlides" id="r" src="2.jpg">
+<img class="mySlides" id="r" src="3.jpg">
+<img class="mySlides" id="r" src="4.jpg">
+<img class="mySlides" id="r" src="5.jpg">
+<img class="mySlides" id="r" src="6.jpg">
+<img class="mySlides" id="r" src="7.jpg">
+<a class="w3-btn-floating" style="position:absolute;top:45%;left:0" onclick="plusDivs(-1)"><</a>
+<a class="w3-btn-floating" style="position:absolute;top:45%;right:0" onclick="plusDivs(1)">></a>
 
-function draw() {
-  context.clearRect(0, 0,600, 400);
-  context.fillStyle = "#000";
-  context.fillStyle = 'green';
-      context.fillRect(textX,textY,5,50);
-      context.fillRect(textX2,textY,5,50);
-  
-      
-    player.draw();
-}
-var player = {
-  color: "red",
-  x: 400,
-  y: 200,
-  width: 32,
-  height: 32,
-  draw: function() {
-    context.fillStyle = this.color;
-    context.fillRect(this.x, this.y, this.width, this.height);
-  }
-};
-player.sprite = Sprite("player");
+</div>
+<a href="PlayGame.html"><button class="btn btn-success btn-lg" id="e">PLAY GAME</button> </a>
+<a href="instruction.html"><button class="btn btn-success btn-lg" id="e">INSTRUCTIONS </button></a>
+</div>
 
-player.draw = function() {
-  this.sprite.draw(context, this.x, this.y);
-};
-
-    </script>
 <style>
-#x
-{
-	color:white;
-	font-size:30px;
-	background-color:black;
-	height:100px;
-	width:100%;
-
-text-align:center;
+#e:hover{
+width:250px;
+height:50px;
+color:white;
 }
+#o{
+    color:#008000;
+    background-color:#FFA500;
+}
+#up{
+     color:white;
+     background-color:#4E8975;
+     height:400px;
+     text-align:center;
+     width:100%;
+}
+#s{
+height:500px;
+width:70%;
+position:relative;
+margin-top:15px;
+margin-left:200px;
+border-radius:25px;
+background: #73AD21;
+border-style: solid black;
+}
+#r{
+height:100%;
+border-radius:25px;
+border-style: solid black;
+width:100%;
+}
+
 </style>
-  </body>
-</html>      
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length} ;
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+</script>
+</body>
+</html>
